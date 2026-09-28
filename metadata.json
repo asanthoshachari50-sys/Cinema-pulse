@@ -1,0 +1,6 @@
+{
+  "name": "CinePass - Live Movie Ticket & Seat Booking",
+  "description": "Book movie tickets, choose real-time theater seats with instant booking confirmation, ticket pass generator, and seamless reservation management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
