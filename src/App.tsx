@@ -11,6 +11,7 @@ import { ShowtimePickerModal } from './components/ShowtimePickerModal';
 import { SeatSelectionView } from './components/SeatSelectionView';
 import { CheckoutModal } from './components/CheckoutModal';
 import { BookingSuccessModal } from './components/BookingSuccessModal';
+import { TrailerModal } from './components/TrailerModal';
 import { MyBookingsDrawer } from './components/MyBookingsDrawer';
 import { TheatersView } from './components/TheatersView';
 import { SnacksView } from './components/SnacksView';
@@ -44,6 +45,9 @@ export default function App() {
 
   // Successful Confirmed Booking Window
   const [confirmedBookingRecord, setConfirmedBookingRecord] = useState<BookingRecord | null>(null);
+
+  // Active Trailer Player Modal
+  const [movieForTrailer, setMovieForTrailer] = useState<Movie | null>(null);
 
   // My Bookings Drawer
   const [isMyBookingsOpen, setIsMyBookingsOpen] = useState(false);
@@ -141,12 +145,14 @@ export default function App() {
               <HeroBanner
                 movie={MOVIES[0]}
                 onBookNow={handleSelectMovie}
+                onWatchTrailer={(movie) => setMovieForTrailer(movie)}
               />
 
               {/* Movies Grid & Catalog */}
               <MovieCatalog
                 movies={MOVIES}
                 onSelectMovie={handleSelectMovie}
+                onWatchTrailer={(movie) => setMovieForTrailer(movie)}
               />
             </>
           )}
@@ -176,6 +182,15 @@ export default function App() {
           movie={selectedMovieForShowtimes}
           onClose={() => setSelectedMovieForShowtimes(null)}
           onSelectShowtime={handleSelectShowtime}
+        />
+      )}
+
+      {/* Official YouTube Trailer Modal */}
+      {movieForTrailer && (
+        <TrailerModal
+          movie={movieForTrailer}
+          onClose={() => setMovieForTrailer(null)}
+          onBookTickets={handleSelectMovie}
         />
       )}
 

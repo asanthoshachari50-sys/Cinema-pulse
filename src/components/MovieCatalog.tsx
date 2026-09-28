@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Star, Search, Filter, Clock, Film } from 'lucide-react';
+import { Star, Search, Filter, Clock, Film, Play, ExternalLink } from 'lucide-react';
 import { Movie } from '../types/booking';
 
 interface MovieCatalogProps {
   movies: Movie[];
   onSelectMovie: (movie: Movie) => void;
+  onWatchTrailer?: (movie: Movie) => void;
 }
 
-export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovie }) => {
+export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovie, onWatchTrailer }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('All');
   const [selectedGenre, setSelectedGenre] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -56,7 +57,7 @@ export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovi
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
-              placeholder="Search Devara, Pushpa, Kalki, Prabhas..."
+              placeholder="Search Paradise, Devara, Pushpa, Kalki..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded-xl border border-white/15 bg-white/5 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-400 focus:border-rose-500 focus:bg-white/10 focus:outline-none"
@@ -148,8 +149,26 @@ export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovi
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#12141e] via-transparent to-transparent opacity-80" />
 
+              {/* Hover Play Trailer Button */}
+              {onWatchTrailer && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onWatchTrailer(movie);
+                  }}
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  aria-label={`Play trailer for ${movie.title}`}
+                >
+                  <span className="flex items-center gap-1.5 rounded-full bg-red-600/90 hover:bg-red-600 px-4 py-2 text-xs font-bold text-white shadow-xl shadow-red-950/80 transform translate-y-2 group-hover:translate-y-0 transition duration-200">
+                    <Play className="h-3.5 w-3.5 fill-white" />
+                    <span>Watch Trailer</span>
+                  </span>
+                </button>
+              )}
+
               {/* Rating overlay badge */}
-              <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-md bg-black/75 backdrop-blur-md px-2 py-0.5 text-xs font-semibold text-yellow-400">
+              <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-md bg-black/75 backdrop-blur-md px-2 py-0.5 text-xs font-semibold text-yellow-400 pointer-events-none">
                 <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
                 <span className="tabular-nums">{movie.rating.toFixed(1)}</span>
                 <span className="text-[10px] text-slate-300 font-normal">({movie.votesCount})</span>
@@ -157,13 +176,13 @@ export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovi
 
               {/* Telugu flag tag if telugu */}
               {movie.languages.includes('Telugu') && (
-                <div className="absolute top-3 left-3 rounded bg-rose-600/90 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                <div className="absolute top-3 left-3 rounded bg-rose-600/90 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-white shadow-sm pointer-events-none">
                   Telugu
                 </div>
               )}
 
               {/* Certificate */}
-              <div className="absolute top-3 right-3 rounded bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-slate-200">
+              <div className="absolute top-3 right-3 rounded bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-slate-200 pointer-events-none">
                 {movie.certificate}
               </div>
             </div>
@@ -190,18 +209,30 @@ export const MovieCatalog: React.FC<MovieCatalogProps> = ({ movies, onSelectMovi
               </div>
 
               {/* Action Button */}
-              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
-                <div className="flex flex-wrap gap-1 text-[10px] text-slate-300">
-                  {movie.formats.slice(0, 2).map((f) => (
-                    <span key={f} className="rounded bg-white/5 px-1.5 py-0.5">
-                      {f}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between gap-2">
+                {onWatchTrailer ? (
+                  <button
+                    type="button"
+                    onClick={() => onWatchTrailer(movie)}
+                    className="flex items-center gap-1 rounded-lg border border-red-500/30 bg-red-950/20 hover:bg-red-900/40 text-red-300 px-2.5 py-1.5 text-[11px] font-semibold transition"
+                    title={`Watch ${movie.title} official YouTube trailer`}
+                  >
+                    <Play className="h-3 w-3 fill-red-400 text-red-400" />
+                    <span>Trailer</span>
+                  </button>
+                ) : (
+                  <div className="flex flex-wrap gap-1 text-[10px] text-slate-300">
+                    {movie.formats.slice(0, 2).map((f) => (
+                      <span key={f} className="rounded bg-white/5 px-1.5 py-0.5">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 <button
                   onClick={() => onSelectMovie(movie)}
-                  className="rounded-lg bg-rose-600 px-3.5 py-1.5 text-xs font-bold text-white transition hover:bg-rose-500 active:scale-95 shadow-sm shadow-rose-900/40"
+                  className="rounded-lg bg-rose-600 px-3.5 py-1.5 text-xs font-bold text-white transition hover:bg-rose-500 active:scale-95 shadow-sm shadow-rose-900/40 shrink-0"
                 >
                   Book Seats
                 </button>

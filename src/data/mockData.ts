@@ -1,15 +1,29 @@
 import { Movie, CinemaVenue, SnackItem, Seat, SeatTier } from '../types/booking';
 
-import heroBannerImg from '../assets/images/hero_movie_banner_1790572542548.jpg';
-import heroTeluguBannerImg from '../assets/images/hero_telugu_epic_banner_1790573005874.jpg';
-import posterScifiImg from '../assets/images/poster_scifi_odyssey_1790572557371.jpg';
-import posterCyberImg from '../assets/images/poster_cyber_action_1790572572293.jpg';
-import posterFantasyImg from '../assets/images/poster_epic_fantasy_1790572582762.jpg';
-import posterDevaraImg from '../assets/images/poster_devara_telugu_1790572950638.jpg';
-import posterPushpaImg from '../assets/images/poster_pushpa_telugu_1790572965087.jpg';
-import posterKalkiImg from '../assets/images/poster_kalki_telugu_1790572981919.jpg';
-import posterSalaarImg from '../assets/images/poster_salaar_telugu_1790572993872.jpg';
-import posterSaripodhaaImg from '../assets/images/poster_saripodhaa_telugu_1790573025295.jpg';
+// Exact Official Theatrical Posters & Backdrops
+import posterDevaraImg from '../assets/images/cinema_posters/poster_devara.jpg';
+import backdropDevaraImg from '../assets/images/cinema_posters/backdrop_devara.jpg';
+
+import posterPushpaImg from '../assets/images/cinema_posters/poster_pushpa2.jpg';
+import backdropPushpaImg from '../assets/images/cinema_posters/backdrop_pushpa2.jpg';
+
+import posterKalkiImg from '../assets/images/cinema_posters/poster_kalki.jpg';
+import backdropKalkiImg from '../assets/images/cinema_posters/backdrop_kalki.jpg';
+
+import posterSalaarImg from '../assets/images/cinema_posters/poster_salaar.jpg';
+import backdropSalaarImg from '../assets/images/cinema_posters/backdrop_salaar.jpg';
+
+import posterSaripodhaaImg from '../assets/images/cinema_posters/poster_saripodhaa.jpg';
+import backdropSaripodhaaImg from '../assets/images/cinema_posters/backdrop_saripodhaa.jpg';
+
+import posterParadiseImg from '../assets/images/cinema_posters/poster_paradise.jpg';
+import backdropParadiseImg from '../assets/images/cinema_posters/backdrop_paradise.jpg';
+
+import posterDuneImg from '../assets/images/cinema_posters/poster_dune2.jpg';
+import backdropDuneImg from '../assets/images/cinema_posters/backdrop_dune2.jpg';
+
+import posterDeadpoolImg from '../assets/images/cinema_posters/poster_deadpool.jpg';
+import backdropDeadpoolImg from '../assets/images/cinema_posters/backdrop_deadpool.jpg';
 
 export const CITIES = [
   'Hyderabad',
@@ -39,9 +53,11 @@ export const MOVIES: Movie[] = [
     synopsis:
       'In a tempestuous coastal fortress community, a fearless clan leader wages an unyielding battle against sea weapon smugglers to safeguard his people, creating an indelible legend that echoes across generations.',
     posterUrl: posterDevaraImg,
-    backdropUrl: heroTeluguBannerImg,
+    backdropUrl: backdropDevaraImg,
     certificate: 'UA 16+',
-    accentColor: '#e11d48'
+    accentColor: '#e11d48',
+    trailerUrl: 'https://www.youtube.com/watch?v=K3f_J-jF_9I',
+    trailerYoutubeId: 'K3f_J-jF_9I'
   },
   {
     id: 'pushpa-2-the-rule',
@@ -58,9 +74,32 @@ export const MOVIES: Movie[] = [
     synopsis:
       'Pushpa Raj cements his reign as the undisputed kingpin of the global red sandalwood network. However, his unyielding rule faces a high-stakes tactical showdown from ruthless enemies and law enforcement.',
     posterUrl: posterPushpaImg,
-    backdropUrl: heroTeluguBannerImg,
+    backdropUrl: backdropPushpaImg,
     certificate: 'A',
-    accentColor: '#ea580c'
+    accentColor: '#ea580c',
+    trailerUrl: 'https://www.youtube.com/watch?v=FEDHYd_ji80',
+    trailerYoutubeId: 'FEDHYd_ji80'
+  },
+  {
+    id: 'paradise-movie',
+    title: 'Paradise',
+    genre: ['Drama', 'Thriller', 'Mystery'],
+    rating: 9.1,
+    votesCount: '89.4K',
+    duration: '1h 33m',
+    releaseDate: 'Jun 28, 2024',
+    formats: ['2D Laser', 'Dolby Atmos'],
+    languages: ['Telugu', 'Malayalam', 'English', 'Tamil', 'Hindi'],
+    director: 'Prasanna Vithanage (Presented by Mani Ratnam)',
+    cast: ['Roshan Mathew', 'Darshana Rajendran', 'Shyam Fernando', 'Mahendra Perera'],
+    synopsis:
+      'Celebrated award-winning masterpiece presented by Mani Ratnam. An Indian couple lands in scenic highlands for their anniversary celebration. When a sudden break-in occurs at their villa, the ensuing search spirals into an intense and morally gripping human drama.',
+    posterUrl: posterParadiseImg,
+    backdropUrl: backdropParadiseImg,
+    certificate: 'UA 16+',
+    accentColor: '#10b981',
+    trailerUrl: 'https://www.youtube.com/watch?v=F0f42W9sO5c',
+    trailerYoutubeId: 'F0f42W9sO5c'
   },
   {
     id: 'kalki-2898-ad',
@@ -77,9 +116,11 @@ export const MOVIES: Movie[] = [
     synopsis:
       'Set in a post-apocalyptic dystopian year 2898 in the city of Kasi under Supreme Yaskin’s Complex, the legendary warrior Ashwatthama awakens to protect the unborn avatar from cunning bounty hunter Bhairava.',
     posterUrl: posterKalkiImg,
-    backdropUrl: heroBannerImg,
+    backdropUrl: backdropKalkiImg,
     certificate: 'UA 13+',
-    accentColor: '#f59e0b'
+    accentColor: '#f59e0b',
+    trailerUrl: 'https://www.youtube.com/watch?v=kQDd1AhGIHk',
+    trailerYoutubeId: 'kQDd1AhGIHk'
   },
   {
     id: 'salaar-part-1-ceasefire',
@@ -96,9 +137,11 @@ export const MOVIES: Movie[] = [
     synopsis:
       'In the brutal, fortified walled state of Khansaar, a fateful childhood bond turns Deva into an unstoppable human war machine when his brother-in-arms Varadha calls upon him to reclaim the throne.',
     posterUrl: posterSalaarImg,
-    backdropUrl: heroTeluguBannerImg,
+    backdropUrl: backdropSalaarImg,
     certificate: 'A',
-    accentColor: '#ef4444'
+    accentColor: '#ef4444',
+    trailerUrl: 'https://www.youtube.com/watch?v=4GPvYMKtrtI',
+    trailerYoutubeId: '4GPvYMKtrtI'
   },
   {
     id: 'saripodhaa-sanivaaram',
@@ -115,66 +158,53 @@ export const MOVIES: Movie[] = [
     synopsis:
       'Surya can unleash his simmering anger only on Saturdays according to his mother’s decree. When he discovers ruthless Inspector Daya tormenting innocent citizens in Sokulapalem, a high-octane battle of wits and brawn begins.',
     posterUrl: posterSaripodhaaImg,
-    backdropUrl: heroTeluguBannerImg,
+    backdropUrl: backdropSaripodhaaImg,
     certificate: 'UA 16+',
-    accentColor: '#38bdf8'
+    accentColor: '#38bdf8',
+    trailerUrl: 'https://www.youtube.com/watch?v=f_Vp_74N-Z8',
+    trailerYoutubeId: 'f_Vp_74N-Z8'
   },
   {
-    id: 'scifi-odyssey',
-    title: 'Aethelgard: The Edge of Light',
-    genre: ['Sci-Fi', 'Adventure', 'Mystery'],
+    id: 'dune-part-two',
+    title: 'Dune: Part Two',
+    genre: ['Sci-Fi', 'Adventure', 'Drama'],
     rating: 9.3,
-    votesCount: '142.8K',
-    duration: '2h 48m',
-    releaseDate: 'Sep 25, 2026',
-    formats: ['IMAX 3D', '4DX', '2D Laser'],
-    languages: ['Telugu', 'English', 'Hindi', 'Tamil'],
+    votesCount: '520.4K',
+    duration: '2h 46m',
+    releaseDate: 'Mar 01, 2024',
+    formats: ['IMAX 70mm', '4DX', 'Dolby Atmos'],
+    languages: ['English', 'Telugu', 'Hindi'],
     director: 'Denis Villeneuve',
-    cast: ['Cillian Murphy', 'Florence Pugh', 'Oscar Isaac', 'Rebecca Ferguson'],
+    cast: ['Timothée Chalamet', 'Zendaya', 'Rebecca Ferguson', 'Javier Bardem', 'Austin Butler'],
     synopsis:
-      'When deep-space sensor telemetry detects an anomalous signal pulsing beyond the Kuiper Belt, an elite interstellar survey crew embarks on humanity’s farthest voyage through a spatial rupture that bends both gravity and memory.',
-    posterUrl: posterScifiImg,
-    backdropUrl: heroBannerImg,
-    certificate: 'UA 16+',
-    accentColor: '#38bdf8'
-  },
-  {
-    id: 'cyber-pulse',
-    title: 'Neon Drift: Protocol Zero',
-    genre: ['Action', 'Cyberpunk', 'Thriller'],
-    rating: 8.8,
-    votesCount: '98.4K',
-    duration: '2h 15m',
-    releaseDate: 'Sep 18, 2026',
-    formats: ['IMAX 2D', '4DX', 'Dolby Atmos'],
-    languages: ['Telugu', 'English', 'Hindi'],
-    director: 'Chad Stahelski',
-    cast: ['Keanu Reeves', 'Hiroyuki Sanada', 'Ana de Armas', 'Donnie Yen'],
-    synopsis:
-      'In a rain-drenched megacity controlled by algorithmic syndicates, a rogue courier must deliver a bio-encrypted neural key across militarized sky-bridges before the dawn grid shutdown.',
-    posterUrl: posterCyberImg,
-    backdropUrl: heroBannerImg,
-    certificate: 'A',
-    accentColor: '#f43f5e'
-  },
-  {
-    id: 'mythic-sanctuary',
-    title: 'Chronicles of the Sky Citadel',
-    genre: ['Fantasy', 'Action', 'Mythology'],
-    rating: 9.1,
-    votesCount: '115.2K',
-    duration: '2h 35m',
-    releaseDate: 'Sep 12, 2026',
-    formats: ['IMAX 3D', '3D', '2D'],
-    languages: ['Telugu', 'English', 'Hindi', 'Kannada'],
-    director: 'Peter Jackson',
-    cast: ['Tom Hiddleston', 'Cate Blanchett', 'Dev Patel', 'Zendaya'],
-    synopsis:
-      'An ancient floating sanctuary awakens above the misted peaks of the Karakoram. An exiled cartographer and a guardian dragon knight race to seal the primordial rift before dusk swallows the realm.',
-    posterUrl: posterFantasyImg,
-    backdropUrl: heroBannerImg,
+      'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future.',
+    posterUrl: posterDuneImg,
+    backdropUrl: backdropDuneImg,
     certificate: 'UA 13+',
-    accentColor: '#fbbf24'
+    accentColor: '#d97706',
+    trailerUrl: 'https://www.youtube.com/watch?v=Way9Dexny3w',
+    trailerYoutubeId: 'Way9Dexny3w'
+  },
+  {
+    id: 'deadpool-wolverine',
+    title: 'Deadpool & Wolverine',
+    genre: ['Action', 'Comedy', 'Sci-Fi'],
+    rating: 9.1,
+    votesCount: '488.2K',
+    duration: '2h 08m',
+    releaseDate: 'Jul 26, 2024',
+    formats: ['IMAX 3D', '4DX', 'Dolby Atmos'],
+    languages: ['English', 'Telugu', 'Hindi'],
+    director: 'Shawn Levy',
+    cast: ['Ryan Reynolds', 'Hugh Jackman', 'Emma Corrin', 'Matthew Macfadyen', 'Dafne Keen'],
+    synopsis:
+      'A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when an existential threat arises, he must reluctantly suit-up alongside an even more reluctant Wolverine.',
+    posterUrl: posterDeadpoolImg,
+    backdropUrl: backdropDeadpoolImg,
+    certificate: 'A',
+    accentColor: '#dc2626',
+    trailerUrl: 'https://www.youtube.com/watch?v=73_1biulkYk',
+    trailerYoutubeId: '73_1biulkYk'
   }
 ];
 

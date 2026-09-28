@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
-import { Star, Play, Sparkles, Clock, ShieldCheck, X } from 'lucide-react';
+import { Star, Play, Sparkles, Clock, ShieldCheck, X, ExternalLink } from 'lucide-react';
 import { Movie } from '../types/booking';
+import { TrailerModal } from './TrailerModal';
 
 interface HeroBannerProps {
   movie: Movie;
   onBookNow: (movie: Movie) => void;
+  onWatchTrailer?: (movie: Movie) => void;
 }
 
-export const HeroBanner: React.FC<HeroBannerProps> = ({ movie, onBookNow }) => {
+export const HeroBanner: React.FC<HeroBannerProps> = ({ movie, onBookNow, onWatchTrailer }) => {
   const [showTrailerModal, setShowTrailerModal] = useState(false);
+
+  const handleTrailerClick = () => {
+    if (onWatchTrailer) {
+      onWatchTrailer(movie);
+    } else {
+      setShowTrailerModal(true);
+    }
+  };
 
   return (
     <div className="relative w-full overflow-hidden border-b border-white/10 bg-[#0d0f17]">
@@ -85,7 +95,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ movie, onBookNow }) => {
               </button>
 
               <button
-                onClick={() => setShowTrailerModal(true)}
+                onClick={handleTrailerClick}
                 className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20 active:scale-95"
               >
                 <Play className="h-4 w-4 fill-white" />
@@ -116,56 +126,11 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ movie, onBookNow }) => {
 
       {/* Trailer Modal */}
       {showTrailerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-          <div className="relative w-full max-w-3xl overflow-hidden rounded-2xl border border-white/20 bg-[#12141e] p-6 shadow-2xl">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
-              <div>
-                <h3 className="text-lg font-bold text-white">{movie.title} — Official Trailer</h3>
-                <p className="text-xs text-slate-400">Exclusive 4K IMAX Preview</p>
-              </div>
-              <button
-                onClick={() => setShowTrailerModal(false)}
-                className="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="my-6 aspect-video w-full overflow-hidden rounded-xl bg-black relative flex items-center justify-center border border-white/10">
-              <img
-                src={movie.backdropUrl}
-                alt="Trailer preview"
-                referrerPolicy="no-referrer"
-                className="h-full w-full object-cover opacity-60"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-center p-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose-600/90 text-white shadow-lg animate-pulse mb-3">
-                  <Play className="h-7 w-7 fill-white ml-1" />
-                </div>
-                <p className="text-sm font-semibold text-white">Official Teaser & Trailer</p>
-                <p className="text-xs text-slate-300 mt-1">Now Streaming in Dolby Atmos & IMAX Formats</p>
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setShowTrailerModal(false)}
-                className="rounded-lg border border-white/15 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10"
-              >
-                Close Preview
-              </button>
-              <button
-                onClick={() => {
-                  setShowTrailerModal(false);
-                  onBookNow(movie);
-                }}
-                className="rounded-lg bg-rose-600 px-5 py-2 text-xs font-bold text-white hover:bg-rose-500"
-              >
-                Book This Movie
-              </button>
-            </div>
-          </div>
-        </div>
+        <TrailerModal
+          movie={movie}
+          onClose={() => setShowTrailerModal(false)}
+          onBookTickets={onBookNow}
+        />
       )}
     </div>
   );

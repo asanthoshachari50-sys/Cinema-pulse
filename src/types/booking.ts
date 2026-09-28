@@ -25,6 +25,8 @@ export interface Movie {
   backdropUrl: string;
   certificate: string;
   accentColor?: string;
+  trailerUrl: string;
+  trailerYoutubeId: string;
 }
 
 export interface CinemaVenue {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Calendar, MapPin, Clock, Star, Film, Sparkles } from 'lucide-react';
+import { X, Calendar, MapPin, Clock, Star, Film, Sparkles, Play, ExternalLink } from 'lucide-react';
 import { Movie, CinemaVenue, ShowDateItem } from '../types/booking';
 import { CINEMAS, getAvailableDates } from '../data/mockData';
 
@@ -53,13 +53,25 @@ export const ShowtimePickerModal: React.FC<ShowtimePickerModalProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
-            aria-label="Close modal"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.open(movie.trailerUrl, '_blank', 'noopener,noreferrer')}
+              className="flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-950/20 hover:bg-red-900/40 text-red-300 px-3 py-1.5 text-xs font-semibold transition"
+              title="Watch official trailer on YouTube"
+            >
+              <Play className="h-3 w-3 fill-red-400 text-red-400" />
+              <span className="hidden sm:inline">Watch Trailer</span>
+              <ExternalLink className="h-3 w-3 text-red-400/80" />
+            </button>
+
+            <button
+              onClick={onClose}
+              className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
+              aria-label="Close modal"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Content */}
